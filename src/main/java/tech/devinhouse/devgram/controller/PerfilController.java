@@ -10,6 +10,7 @@ import tech.devinhouse.devgram.dto.UpdatePerfilRequest;
 import tech.devinhouse.devgram.model.Perfil;
 import tech.devinhouse.devgram.service.PerfilService;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class PerfilController {
     }
 
     @PostMapping
-    public ResponseEntity<PerfilResponse> criar(@RequestBody PerfilRequest request) {
+    public ResponseEntity<PerfilResponse> criar(@RequestBody @Valid PerfilRequest request) {
         Perfil perfil = mapper.map(request, Perfil.class);
         perfil = service.criar(perfil);
         PerfilResponse resp = mapper.map(perfil, PerfilResponse.class);
