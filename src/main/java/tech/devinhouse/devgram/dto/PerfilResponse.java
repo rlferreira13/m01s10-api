@@ -1,6 +1,7 @@
 package tech.devinhouse.devgram.dto;
 
 import lombok.Data;
+import tech.devinhouse.devgram.model.Status;
 
 import java.time.LocalDate;
 
@@ -14,5 +15,7 @@ public class PerfilResponse {
     private LocalDate dataNascimento;
 
     private String profissao;
+
+    private Status status;
 
 }
