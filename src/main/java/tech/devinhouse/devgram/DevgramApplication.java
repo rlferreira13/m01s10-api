@@ -29,9 +29,9 @@ public class DevgramApplication {
 			List<Perfil> lista = perfilService.consultar(100, 0, "nome", "ASC");
 			if (lista.isEmpty()) {
 				perfilService.criar(new Perfil("tiago", "bio do tiago", LocalDate.now().minusYears(20),
-						"dev", LocalDateTime.now(), LocalDateTime.now(), Status.ATIVO));
+						"dev", LocalDateTime.now(), LocalDateTime.now(), Status.ATIVO, null));
 				perfilService.criar(new Perfil("fabiane", "bio do fabiane", LocalDate.now().minusYears(22),
-						"dev", LocalDateTime.now(), LocalDateTime.now(), Status.ATIVO));
+						"dev", LocalDateTime.now(), LocalDateTime.now(), Status.ATIVO, null));
 			}
 		};
 	}
