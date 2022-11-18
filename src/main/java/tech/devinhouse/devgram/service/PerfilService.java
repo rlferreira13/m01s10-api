@@ -3,10 +3,14 @@ package tech.devinhouse.devgram.service;
 import lombok.AllArgsConstructor;
 import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import tech.devinhouse.devgram.exception.RegistroExistenteException;
 import tech.devinhouse.devgram.exception.RegistroNaoEncontradoException;
 import tech.devinhouse.devgram.model.Perfil;
+import tech.devinhouse.devgram.model.Status;
 import tech.devinhouse.devgram.repository.PerfilRepository;
 
 import java.time.LocalDateTime;
@@ -19,8 +23,16 @@ public class PerfilService {
 
     private PerfilRepository repo;
 
-    public List<Perfil> consultar() {
-        return repo.findAll();
+    public List<Perfil> consultar(Integer tamanho, Integer pagina, String ordenacao, String direcao) {
+//        return repo.findAll();
+        Sort.Direction direcaoSort = Sort.Direction.valueOf(direcao);
+        PageRequest pageable = PageRequest.of(pagina, tamanho).withSort(direcaoSort, ordenacao);
+        Page<Perfil> page = repo.findAll(pageable);
+        return page.toList();
+    }
+
+    public List<Perfil> consultar(Status status) {
+        return repo.findByStatus(status);
     }
 
     public Perfil consultar(String nome) {

@@ -26,7 +26,7 @@ public class DevgramApplication {
 	@Bean
 	CommandLineRunner run(PerfilService perfilService) {
 		return args -> {
-			List<Perfil> lista = perfilService.consultar();
+			List<Perfil> lista = perfilService.consultar(100, 0, "nome", "ASC");
 			if (lista.isEmpty()) {
 				perfilService.criar(new Perfil("tiago", "bio do tiago", LocalDate.now().minusYears(20),
 						"dev", LocalDateTime.now(), LocalDateTime.now(), Status.ATIVO));
