@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -30,5 +31,8 @@ public class Perfil {
 
     @Enumerated(value = EnumType.STRING)
     private Status status;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "perfil")
+    private List<Publicacao> publicacoes;
 
 }

@@ -2,7 +2,6 @@ package tech.devinhouse.devgram.controller;
 
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,6 @@ import tech.devinhouse.devgram.model.Status;
 import tech.devinhouse.devgram.service.PerfilService;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.net.URI;
 import java.util.ArrayList;
@@ -49,7 +47,7 @@ public class PerfilController {
     @GetMapping("filtrado")
     public ResponseEntity<List<PerfilResponse>> listarFiltrado(
             @RequestParam(value = "filtro-status", required = true)
-                @Pattern(regexp = "ATIVO|INATIVO", message = "{campo.invalido}") String filtroStatus ) {
+                @Pattern(regexp = "ATIVO|INATIVO", message = "{campo.invalido}") String filtroStatus) {
         Status status = Status.valueOf(filtroStatus);
         List<Perfil> perfis = service.consultar(status);
         List<PerfilResponse> resp = new ArrayList<>();
